@@ -1,0 +1,23 @@
+{
+  "type": "table",
+  "title": "Customers",
+  "description": "All registered customers and their status",
+  "searchable": true,
+  "pagination": true,
+  "pageSize": 5,
+  "columns": [
+    { "key": "name", "label": "Name", "sortable": true },
+    { "key": "email", "label": "Email", "sortable": true },
+    { "key": "plan", "label": "Plan", "sortable": true, "format": "badge" },
+    { "key": "spend", "label": "Total Spend", "sortable": true, "format": "currency" },
+    { "key": "status", "label": "Status", "sortable": true, "format": "badge" }
+  ],
+  "data": [
+    { "name": "Alice Johnson", "email": "alice@example.com", "plan": "Pro", "spend": 1480, "status": "Active" },
+    { "name": "Bob Martinez", "email": "bob@techcorp.io", "plan": "Enterprise", "spend": 8200, "status": "Active" },
+    { "name": "Carol White", "email": "carol@startup.co", "plan": "Free", "spend": 0, "status": "Active" },
+    { "name": "David Kim", "email": "david@agency.net", "plan": "Pro", "spend": 2160, "status": "Active" },
+    { "name": "Emma Davis", "email": "emma@bigco.com", "plan": "Enterprise", "spend": 14500, "status": "Active" },
+    { "name": "Frank Wilson", "email": "frank@example.com", "plan": "Free", "spend": 0, "status": "Churned" }
+  ]
+}

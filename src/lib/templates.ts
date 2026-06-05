@@ -1,0 +1,367 @@
+import type { Template } from "@/types";
+
+export const TEMPLATES: Template[] = [
+  // ── Dashboards ──────────────────────────────────────────────────────────────
+  {
+    id: "crm-dashboard",
+    name: "CRM Dashboard",
+    description: "Revenue KPIs, pipeline, activity",
+    category: "Dashboard",
+    config: {
+      type: "dashboard",
+      title: "CRM Overview",
+      description: "Customer relationship metrics at a glance",
+      columns: 3,
+      widgets: [
+        { type: "kpi", title: "Total Revenue", value: "$248,500", change: 14.2, changeLabel: "vs last month", color: "green" },
+        { type: "kpi", title: "Active Deals", value: 94, change: 7.8, changeLabel: "vs last month", color: "blue" },
+        { type: "kpi", title: "New Leads", value: 318, change: -2.1, changeLabel: "vs last month", color: "purple" },
+        { type: "kpi", title: "Avg Deal Size", value: "$8,420", change: 5.3, changeLabel: "vs last quarter", color: "amber" },
+        { type: "kpi", title: "Win Rate", value: "68%", change: 3.1, changeLabel: "vs last quarter", color: "teal" },
+        { type: "kpi", title: "Churn Rate", value: "2.4%", change: -0.8, changeLabel: "vs last month", color: "red" },
+        {
+          type: "activity", title: "Recent Activity",
+          items: [
+            { id: 1, user: "Sarah Chen", action: "Closed deal with Acme Corp — $28,000", time: "3m ago", type: "success" },
+            { id: 2, user: "Marcus Lee", action: "Added 18 leads from LinkedIn campaign", time: "21m ago" },
+            { id: 3, user: "Priya Nair", action: "Pipeline stage updated for TechStart", time: "1h ago" },
+            { id: 4, user: "Jordan Smith", action: "Sent proposal to Globex Solutions", time: "2h ago" },
+            { id: 5, user: "Alex Rivera", action: "Scheduled demo — NewWave Media", time: "4h ago" },
+          ],
+        },
+        {
+          type: "summary", title: "Pipeline",
+          items: [
+            { label: "Prospecting", value: "42 deals" },
+            { label: "Qualification", value: "31 deals" },
+            { label: "Proposal Sent", value: "18 deals" },
+            { label: "Negotiation", value: "12 deals" },
+            { label: "Closed Won", value: "9 deals" },
+          ],
+        },
+        {
+          type: "chart", title: "Monthly Revenue",
+          chartType: "bar",
+          labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+          datasets: [{ label: "Revenue", data: [42000,58000,51000,67000,72000,88000], color: "#6d62f5" }],
+        },
+      ],
+    },
+  },
+  {
+    id: "analytics",
+    name: "Analytics Dashboard",
+    description: "Traffic, conversions, engagement",
+    category: "Dashboard",
+    config: {
+      type: "dashboard",
+      title: "Product Analytics",
+      description: "User behavior and engagement metrics",
+      columns: 4,
+      widgets: [
+        { type: "kpi", title: "Page Views", value: "1.84M", change: 22.1, changeLabel: "30-day", color: "blue" },
+        { type: "kpi", title: "Unique Visitors", value: "124K", change: 11.4, changeLabel: "30-day", color: "green" },
+        { type: "kpi", title: "Bounce Rate", value: "31.8%", change: -4.2, changeLabel: "30-day", color: "amber" },
+        { type: "kpi", title: "Avg Session", value: "4m 12s", change: 9.7, changeLabel: "30-day", color: "purple" },
+        {
+          type: "chart", title: "Daily Active Users",
+          chartType: "area",
+          labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+          datasets: [{ label: "DAU", data: [8200,9100,8800,10200,11400,7600,6900], color: "#6d62f5" }],
+        },
+        {
+          type: "summary", title: "Top Pages",
+          items: [
+            { label: "/home", value: "480K views" },
+            { label: "/pricing", value: "212K views" },
+            { label: "/docs", value: "168K views" },
+            { label: "/blog", value: "142K views" },
+            { label: "/signup", value: "98K views" },
+          ],
+        },
+        {
+          type: "summary", title: "Traffic Sources",
+          items: [
+            { label: "Organic Search", value: "46%" },
+            { label: "Direct", value: "22%" },
+            { label: "Social Media", value: "16%" },
+            { label: "Referral", value: "10%" },
+            { label: "Email Campaigns", value: "6%" },
+          ],
+        },
+        {
+          type: "activity", title: "Events",
+          items: [
+            { id: 1, action: "Traffic spike — 3.8x on /pricing page", time: "5m ago", type: "warning" },
+            { id: 2, action: "A/B test launched on hero section", time: "1h ago", type: "success" },
+            { id: 3, action: "Goal conversion dropped below 2% threshold", time: "3h ago", type: "danger" },
+            { id: 4, action: "Weekly performance report generated", time: "1d ago" },
+          ],
+        },
+      ],
+    },
+  },
+
+  // ── Tables ──────────────────────────────────────────────────────────────────
+  {
+    id: "customer-table",
+    name: "Customers Table",
+    description: "Searchable, sortable with pagination",
+    category: "Table",
+    config: {
+      type: "table",
+      title: "Customers",
+      description: "Registered customers and subscription status",
+      searchable: true,
+      pagination: true,
+      pageSize: 6,
+      striped: true,
+      columns: [
+        { key: "name",   label: "Customer",     sortable: true },
+        { key: "email",  label: "Email",         sortable: true, format: "email" },
+        { key: "plan",   label: "Plan",          sortable: true, format: "badge" },
+        { key: "mrr",    label: "MRR",           sortable: true, format: "currency", align: "right" },
+        { key: "joined", label: "Joined",        sortable: true, format: "date" },
+        { key: "status", label: "Status",        sortable: true, format: "badge" },
+      ],
+      data: [
+        { name: "Alice Johnson",   email: "alice@example.com",   plan: "Pro",        mrr: 149,  joined: "2023-03-12", status: "Active" },
+        { name: "Bob Martinez",    email: "bob@techcorp.io",     plan: "Enterprise", mrr: 799,  joined: "2022-11-05", status: "Active" },
+        { name: "Carol White",     email: "carol@startup.co",    plan: "Free",       mrr: 0,    joined: "2024-01-20", status: "Active" },
+        { name: "David Kim",       email: "david@agency.net",    plan: "Pro",        mrr: 149,  joined: "2023-07-18", status: "Active" },
+        { name: "Emma Davis",      email: "emma@bigco.com",      plan: "Enterprise", mrr: 799,  joined: "2022-06-01", status: "Active" },
+        { name: "Frank Wilson",    email: "frank@example.com",   plan: "Free",       mrr: 0,    joined: "2024-02-14", status: "Churned" },
+        { name: "Grace Lee",       email: "grace@media.io",      plan: "Pro",        mrr: 149,  joined: "2023-09-22", status: "Active" },
+        { name: "Henry Brown",     email: "henry@consulting.co", plan: "Pro",        mrr: 149,  joined: "2023-05-30", status: "Active" },
+        { name: "Iris Taylor",     email: "iris@labs.com",       plan: "Enterprise", mrr: 799,  joined: "2022-12-10", status: "Active" },
+        { name: "Jack Anderson",   email: "jack@ventures.vc",    plan: "Free",       mrr: 0,    joined: "2024-03-01", status: "Trial" },
+        { name: "Karen Thomas",    email: "karen@design.studio", plan: "Pro",        mrr: 149,  joined: "2023-10-15", status: "Active" },
+        { name: "Leo Jackson",     email: "leo@app.dev",         plan: "Starter",    mrr: 49,   joined: "2024-01-05", status: "Active" },
+        { name: "Maya Patel",      email: "maya@fintech.com",    plan: "Enterprise", mrr: 799,  joined: "2022-08-22", status: "Active" },
+        { name: "Noah Williams",   email: "noah@saas.io",        plan: "Starter",    mrr: 49,   joined: "2024-02-28", status: "Trial" },
+      ],
+    },
+  },
+  {
+    id: "orders-table",
+    name: "Orders Table",
+    description: "Order tracking with status badges",
+    category: "Table",
+    config: {
+      type: "table",
+      title: "Recent Orders",
+      description: "All orders from the last 30 days",
+      searchable: true,
+      pagination: true,
+      pageSize: 7,
+      columns: [
+        { key: "id",       label: "Order ID",   sortable: false },
+        { key: "customer", label: "Customer",   sortable: true },
+        { key: "items",    label: "Items",      sortable: true, align: "center" },
+        { key: "total",    label: "Total",      sortable: true, format: "currency", align: "right" },
+        { key: "date",     label: "Date",       sortable: true, format: "date" },
+        { key: "status",   label: "Status",     sortable: true, format: "badge" },
+        { key: "payment",  label: "Payment",    sortable: true, format: "badge" },
+      ],
+      data: [
+        { id: "#ORD-4821", customer: "Acme Corp",     items: 3, total: 1240,  date: "2024-06-01", status: "Delivered",  payment: "Paid" },
+        { id: "#ORD-4820", customer: "TechStart",     items: 1, total: 480,   date: "2024-06-01", status: "Processing", payment: "Paid" },
+        { id: "#ORD-4819", customer: "Globex Inc",    items: 5, total: 3200,  date: "2024-05-31", status: "Shipped",    payment: "Paid" },
+        { id: "#ORD-4818", customer: "Wayne Ent.",    items: 2, total: 780,   date: "2024-05-31", status: "Pending",    payment: "Pending" },
+        { id: "#ORD-4817", customer: "Stark Ind.",    items: 8, total: 6400,  date: "2024-05-30", status: "Delivered",  payment: "Paid" },
+        { id: "#ORD-4816", customer: "Umbrella Corp", items: 1, total: 220,   date: "2024-05-30", status: "Cancelled",  payment: "Refunded" },
+        { id: "#ORD-4815", customer: "Initech",       items: 4, total: 1880,  date: "2024-05-29", status: "Delivered",  payment: "Paid" },
+        { id: "#ORD-4814", customer: "Dunder Mifflin",items: 2, total: 640,   date: "2024-05-29", status: "Shipped",    payment: "Paid" },
+      ],
+    },
+  },
+
+  // ── Forms ────────────────────────────────────────────────────────────────────
+  {
+    id: "onboarding-form",
+    name: "User Onboarding Form",
+    description: "Multi-field with full validation",
+    category: "Form",
+    config: {
+      type: "form",
+      title: "Create your account",
+      description: "Get started in under 2 minutes — no credit card required.",
+      submitLabel: "Create Account",
+      layout: "grid",
+      fields: [
+        { name: "firstName", label: "First Name", type: "text", placeholder: "Jane", required: true, width: "half" },
+        { name: "lastName",  label: "Last Name",  type: "text", placeholder: "Smith", required: true, width: "half" },
+        { name: "email",     label: "Work Email", type: "email", placeholder: "jane@company.com", required: true },
+        { name: "password",  label: "Password",   type: "password", placeholder: "Min 8 characters", required: true, minLength: 8 },
+        {
+          name: "role", label: "Your Role", type: "select", required: true,
+          options: [
+            { label: "Software Engineer", value: "engineer" },
+            { label: "Product Manager",   value: "pm" },
+            { label: "Designer",          value: "designer" },
+            { label: "Marketing",         value: "marketing" },
+            { label: "Sales",             value: "sales" },
+            { label: "Founder / CEO",     value: "founder" },
+            { label: "Other",             value: "other" },
+          ],
+        },
+        { name: "company", label: "Company Name", type: "text", placeholder: "Acme Corp" },
+        { name: "teamSize", label: "Team Size", type: "number", placeholder: "e.g. 25", min: 1 },
+        {
+          name: "plan", label: "Select Plan", type: "select", required: true,
+          options: [
+            { label: "Free (Up to 3 users)", value: "free" },
+            { label: "Pro — $49/mo",         value: "pro" },
+            { label: "Enterprise — Custom",  value: "enterprise" },
+          ],
+        },
+        { name: "useCase", label: "What are you building?", type: "textarea", placeholder: "Briefly describe your project or use case…", helpText: "This helps us tailor your experience." },
+        { name: "updates", label: "Send me product updates and changelog emails", type: "toggle", defaultValue: true },
+        { name: "terms",   label: "I agree to the Terms of Service and Privacy Policy", type: "checkbox", required: true },
+      ],
+    },
+  },
+  {
+    id: "contact-form",
+    name: "Contact Form",
+    description: "Simple contact / support form",
+    category: "Form",
+    config: {
+      type: "form",
+      title: "Get in touch",
+      description: "We typically respond within one business day.",
+      submitLabel: "Send Message",
+      fields: [
+        { name: "name",    label: "Full Name",    type: "text",     placeholder: "Your name",           required: true },
+        { name: "email",   label: "Email",        type: "email",    placeholder: "you@example.com",     required: true },
+        { name: "subject", label: "Subject",      type: "select",   required: true,
+          options: [
+            { label: "General Inquiry",  value: "general" },
+            { label: "Technical Support", value: "support" },
+            { label: "Billing",          value: "billing" },
+            { label: "Partnership",      value: "partnership" },
+          ],
+        },
+        { name: "priority", label: "Priority", type: "select",
+          options: [
+            { label: "Low",    value: "low" },
+            { label: "Medium", value: "medium" },
+            { label: "High",   value: "high" },
+          ],
+        },
+        { name: "message", label: "Message", type: "textarea", placeholder: "How can we help you?", required: true },
+        { name: "attach", label: "Include system info with request", type: "checkbox" },
+      ],
+    },
+  },
+
+  // ── Other ────────────────────────────────────────────────────────────────────
+  {
+    id: "alert-showcase",
+    name: "Alert States",
+    description: "Info, success, warning, danger",
+    category: "UI",
+    config: {
+      type: "layout",
+      layout: "single",
+      children: [
+        { type: "alert", title: "New version available", message: "Dynamo v2.1 is out. Upgrade to get the latest components and performance improvements.", variant: "info", dismissible: true },
+        { type: "alert", title: "Deployment succeeded", message: "Your application was deployed successfully to production at 14:32 UTC.", variant: "success", dismissible: true },
+        { type: "alert", title: "Usage limit approaching", message: "You've used 87% of your monthly API quota. Consider upgrading to avoid service interruptions.", variant: "warning", dismissible: true },
+        { type: "alert", title: "Payment failed", message: "Your payment method was declined. Please update your billing information to maintain access.", variant: "danger", dismissible: true },
+      ],
+    },
+  },
+  {
+    id: "progress-bars",
+    name: "Progress Bars",
+    description: "Multi-item progress tracking",
+    category: "UI",
+    config: {
+      type: "progress",
+      title: "Q2 OKR Progress",
+      items: [
+        { label: "Revenue Target ($2M)",      value: 74, color: "primary" },
+        { label: "New Customer Acquisition",  value: 88, color: "success" },
+        { label: "NPS Score ≥ 60",            value: 52, color: "warning" },
+        { label: "Infra Cost Reduction",      value: 31, color: "danger" },
+        { label: "Feature Velocity",          value: 95, color: "primary" },
+        { label: "Support Resolution ≤ 4h",   value: 67, color: "success" },
+      ],
+    },
+  },
+  {
+    id: "tabs-layout",
+    name: "Tabbed Layout",
+    description: "Multi-tab with mixed content",
+    category: "Layout",
+    config: {
+      type: "tabs",
+      defaultTab: "overview",
+      tabs: [
+        {
+          id: "overview", label: "Overview",
+          content: {
+            type: "dashboard",
+            columns: 3,
+            widgets: [
+              { type: "kpi", title: "MRR", value: "$84,200", change: 8.4, color: "green" },
+              { type: "kpi", title: "Active Users", value: "12,400", change: 15.2, color: "blue" },
+              { type: "kpi", title: "Open Tickets", value: 23, change: -12.0, color: "amber" },
+              { type: "summary", title: "At a Glance", items: [
+                { label: "Uptime (30d)", value: "99.97%" },
+                { label: "Avg Response", value: "142ms" },
+                { label: "Error Rate",   value: "0.03%" },
+              ]},
+            ],
+          },
+        },
+        {
+          id: "users", label: "Users",
+          content: {
+            type: "table",
+            searchable: true,
+            pagination: true,
+            pageSize: 5,
+            columns: [
+              { key: "name", label: "Name", sortable: true },
+              { key: "email", label: "Email", sortable: true },
+              { key: "role", label: "Role", format: "badge", sortable: true },
+              { key: "lastSeen", label: "Last Seen", format: "date", sortable: true },
+            ],
+            data: [
+              { name: "Alice Chen", email: "alice@co.com", role: "Admin", lastSeen: "2024-06-01" },
+              { name: "Bob Smith", email: "bob@co.com", role: "Editor", lastSeen: "2024-05-30" },
+              { name: "Carol Jones", email: "carol@co.com", role: "Viewer", lastSeen: "2024-05-28" },
+              { name: "Dan Brown", email: "dan@co.com", role: "Editor", lastSeen: "2024-05-25" },
+              { name: "Eve Davis", email: "eve@co.com", role: "Viewer", lastSeen: "2024-05-20" },
+              { name: "Frank Wu", email: "frank@co.com", role: "Admin", lastSeen: "2024-06-01" },
+            ],
+          },
+        },
+        {
+          id: "settings", label: "Settings",
+          content: {
+            type: "form",
+            title: "Workspace Settings",
+            submitLabel: "Save Changes",
+            fields: [
+              { name: "workspaceName", label: "Workspace Name", type: "text", placeholder: "My Workspace", required: true },
+              { name: "slug", label: "URL Slug", type: "text", placeholder: "my-workspace", helpText: "Used in your public URLs" },
+              { name: "timezone", label: "Timezone", type: "select", options: [
+                { label: "UTC", value: "utc" },
+                { label: "US/Eastern", value: "us-east" },
+                { label: "US/Pacific", value: "us-west" },
+                { label: "Asia/Kolkata", value: "ist" },
+              ]},
+              { name: "publicProfile", label: "Make workspace discoverable", type: "toggle" },
+              { name: "twoFactor",    label: "Require 2FA for all members", type: "toggle" },
+            ],
+          },
+        },
+      ],
+    },
+  },
+];
+
+export const CATEGORIES = [...new Set(TEMPLATES.map((t) => t.category))];

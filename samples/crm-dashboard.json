@@ -1,0 +1,49 @@
+{
+  "type": "dashboard",
+  "title": "CRM Overview",
+  "description": "Customer relationship metrics at a glance",
+  "columns": 3,
+  "widgets": [
+    {
+      "type": "kpi",
+      "title": "Total Revenue",
+      "value": "$128,450",
+      "change": 12.5,
+      "changeLabel": "vs last month",
+      "color": "green"
+    },
+    {
+      "type": "kpi",
+      "title": "Active Deals",
+      "value": 84,
+      "change": -3.2,
+      "changeLabel": "vs last month",
+      "color": "blue"
+    },
+    {
+      "type": "kpi",
+      "title": "New Leads",
+      "value": 312,
+      "change": 8.1,
+      "changeLabel": "vs last month",
+      "color": "purple"
+    },
+    {
+      "type": "activity",
+      "title": "Recent Activity",
+      "items": [
+        { "id": "1", "user": "Sarah Chen", "action": "Closed deal with Acme Corp — $24,000", "time": "2m ago" },
+        { "id": "2", "user": "Marcus Lee", "action": "Added 12 new leads from LinkedIn campaign", "time": "18m ago" }
+      ]
+    },
+    {
+      "type": "summary",
+      "title": "Pipeline Summary",
+      "items": [
+        { "label": "Prospecting", "value": "42 deals" },
+        { "label": "Qualification", "value": "28 deals" },
+        { "label": "Negotiation", "value": "11 deals" }
+      ]
+    }
+  ]
+}

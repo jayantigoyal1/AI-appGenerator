@@ -1,0 +1,23 @@
+{
+  "type": "form",
+  "title": "Create Account",
+  "description": "Fill in your details to get started",
+  "submitLabel": "Create Account",
+  "fields": [
+    { "name": "firstName", "label": "First Name", "type": "text", "placeholder": "Jane", "required": true },
+    { "name": "lastName", "label": "Last Name", "type": "text", "placeholder": "Smith", "required": true },
+    { "name": "email", "label": "Work Email", "type": "email", "placeholder": "jane@company.com", "required": true },
+    {
+      "name": "role",
+      "label": "Role",
+      "type": "select",
+      "required": true,
+      "options": [
+        { "label": "Engineer", "value": "engineer" },
+        { "label": "Designer", "value": "designer" },
+        { "label": "Product Manager", "value": "pm" }
+      ]
+    },
+    { "name": "newsletter", "label": "Subscribe to product updates", "type": "checkbox", "defaultValue": true }
+  ]
+}
