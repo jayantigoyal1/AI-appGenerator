@@ -237,5 +237,6 @@ export interface Template {
   name: string;
   description: string;
   category: string;
+  icon?: string;
   config: AppConfig;
 }

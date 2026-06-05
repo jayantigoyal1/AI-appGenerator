@@ -78,13 +78,30 @@ function normalizeField(raw: unknown, index: number): FormField | null {
     minLength:    f.minLength !== undefined ? Number(f.minLength) : undefined,
     maxLength:    f.maxLength !== undefined ? Number(f.maxLength) : undefined,
     defaultValue: f.defaultValue,
-    options:      Array.isArray(f.options)
+    options: Array.isArray(f.options)
       ? f.options.map((o: unknown) => {
           if (typeof o === "object" && o !== null) {
             const oo = o as Record<string, unknown>;
-            return { label: safeString(oo.label) || safeString(oo.value), value: oo.value ?? "" };
+
+            return {
+              label:
+                safeString(oo.label) ||
+                safeString(oo.value),
+
+              value:
+                typeof oo.value === "number"
+                  ? oo.value
+                  : safeString(oo.value),
+            };
           }
-          return { label: String(o), value: String(o) };
+
+          return {
+            label: String(o),
+            value:
+              typeof o === "number"
+                ? o
+                : String(o),
+          };
         })
       : undefined,
   };

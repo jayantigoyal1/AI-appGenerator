@@ -14,7 +14,7 @@ export function JsonEditor({ className }: Props) {
   const { rawJson, setRawJson, setParsedConfig, setValidation } = useMetadataStore();
   const { addError } = useErrorStore();
   const editorRef = useRef<unknown>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const debounceRef = React.useRef<any>(null);
 
   const processJson = useCallback(
     (value: string) => {

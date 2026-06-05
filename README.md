@@ -1,6 +1,6 @@
 # Dynamo — Metadata-Driven App Generator
 
-A production-ready metadata-driven frontend runtime built with Next.js 15.
+A metadata-driven frontend runtime and visual app generator built with Next.js 15.
 
 Users can paste JSON configuration and instantly generate fully functional UI components including dashboards, forms, tables, cards, alerts, progress trackers, and layouts.
 

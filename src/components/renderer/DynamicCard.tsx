@@ -16,11 +16,14 @@ export function DynamicCard({ config }: Props) {
         </div>
       )}
       <div className="p-5 space-y-3">
-        {config.badges && config.badges.length > 0 && (
+        {Array.isArray(config.badges) && config.badges.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {config.badges.map((badge, i) => (
-              <span key={i} className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-brand-50 text-brand-700 border border-brand-100">
-                {badge}
+              <span
+                key={i}
+                className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-brand-50 text-brand-700 border border-brand-100"
+              >
+                {String(badge)}
               </span>
             ))}
           </div>

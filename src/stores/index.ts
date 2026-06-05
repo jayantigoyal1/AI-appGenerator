@@ -64,7 +64,15 @@ export const useRendererStore = create<RendererState>()(
         set((s) => ({
           tableStates: {
             ...s.tableStates,
-            [id]: { page: 1, search: "", sortKey: null, sortDir: "asc", ...s.tableStates[id], ...state },
+            [id]: {
+              ...(s.tableStates[id] ?? {
+                page: 1,
+                search: "",
+                sortKey: null,
+                sortDir: "asc",
+              }),
+              ...state,
+            },
           },
         })),
       setActiveTab: (id, tab) => set((s) => ({ activeTabs: { ...s.activeTabs, [id]: tab } })),

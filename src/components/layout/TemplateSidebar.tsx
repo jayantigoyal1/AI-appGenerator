@@ -77,7 +77,7 @@ export function TemplateSidebar() {
                   "flex-shrink-0 mt-0.5",
                   activeTemplate === template.id ? "text-brand-600" : "text-ink-tertiary group-hover:text-ink-secondary"
                 )}>
-                  {ICON_MAP[template.icon]}
+                  {ICON_MAP[template.icon ?? "BarChart3"]}
                 </span>
                 <div className="min-w-0">
                   <p className={cn(

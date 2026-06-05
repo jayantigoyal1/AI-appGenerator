@@ -99,13 +99,19 @@ const LAYOUT_CLASSES: Record<string, string> = {
 };
 
 function LayoutRenderer({ config }: { config: LayoutConfig }) {
-  const layoutClass = LAYOUT_CLASSES[config.layout] || LAYOUT_CLASSES.single;
-  const children = Array.isArray(config.children) ? config.children : [];
+  const layoutKey = config.layout ?? "single";
+
+  const layoutClass =
+    LAYOUT_CLASSES[layoutKey] ?? LAYOUT_CLASSES.single;
+
+  const children = Array.isArray(config.children)
+    ? config.children
+    : [];
 
   return (
     <div className={layoutClass}>
       {children.map((child, i) => (
-        <ComponentRenderer key={i} config={child} />
+        <ComponentRenderer key={i} config={child as AppConfig} />
       ))}
     </div>
   );
